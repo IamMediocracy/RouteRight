@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="asmagill.routeright.basic_layout"
+    tools:showIn="@layout/activity_basic_layout"
+    android:background="#ad2929">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Basic Information"
+        android:id="@+id/basicInfoTitle"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="30dp"
+        android:textStyle="bold|italic"
+        android:textColor="#ffffff" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1"
+        android:layout_below="@+id/basicInfoTitle"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="32dp">
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="SSID:"
+                android:padding="3dip"
+                android:textColor="#ffffff" />
+            <TextView
+                android:text="MyWifi"
+                android:gravity="right"
+                android:padding="3dip"
+                android:textColor="#ffffff"
+                android:id="@+id/ssid" />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="Status:"
+                android:padding="3dip"
+                android:textColor="#ffffff" />
+            <TextView
+                android:text="Connected"
+                android:gravity="right"
+                android:padding="3dip"
+                android:textColor="#ffffff"
+                android:id="@+id/status" />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="Type:"
+                android:padding="3dip"
+                android:textColor="#ffffff" />
+            <TextView
+                android:text="Wifi"
+                android:gravity="right"
+                android:padding="3dip"
+                android:textColor="#ffffff"
+                android:id="@+id/type" />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="Network:"
+                android:padding="3dip"
+                android:textColor="#ffffff" />
+            <TextView
+                android:text="MyWifi"
+                android:gravity="right"
+                android:padding="3dip"
+                android:textColor="#ffffff"
+                android:id="@+id/network" />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="IP Address:"
+                android:padding="3dip"
+                android:textColor="#ffffff" />
+            <TextView
+                android:text="192.168.15.110"
+                android:gravity="right"
+                android:padding="3dip"
+                android:textColor="#ffffff"
+                android:id="@+id/ipAdd" />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="Public IP:"
+                android:padding="3dip"
+                android:textColor="#ffffff" />
+            <TextView
+                android:text="139.190.74.218"
+                android:gravity="right"
+                android:padding="3dip"
+                android:textColor="#ffffff"
+                android:id="@+id/publicIP" />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="Gateway:"
+                android:padding="3dip"
+                android:textColor="#ffffff" />
+            <TextView
+                android:text="192.168.15.1"
+                android:gravity="right"
+                android:padding="3dip"
+                android:textColor="#ffffff"
+                android:id="@+id/gateway" />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="Subnet Mask:"
+                android:padding="3dip"
+                android:textColor="#ffffff" />
+            <TextView
+                android:text="255.255.255.0"
+                android:gravity="right"
+                android:padding="3dip"
+                android:textColor="#ffffff"
+                android:id="@+id/subnetMask" />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="Mac Address:"
+                android:padding="3dip"
+                android:textColor="#ffffff" />
+            <TextView
+                android:text="60:8F:5C:19:BC:90"
+                android:gravity="right"
+                android:padding="3dip"
+                android:textColor="#ffffff"
+                android:id="@+id/macAdd" />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="DNS1:"
+                android:padding="3dip"
+                android:textColor="#ffffff" />
+            <TextView
+                android:text="192.168.15.1"
+                android:gravity="right"
+                android:padding="3dip"
+                android:textColor="#ffffff"
+                android:id="@+id/dns" />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="DHCP Server:"
+                android:padding="3dip"
+                android:textColor="#ffffff" />
+            <TextView
+                android:text="192.168.15.1"
+                android:gravity="right"
+                android:padding="3dip"
+                android:textColor="#ffffff"
+                android:id="@+id/dhcp" />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+    </TableLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="41dp">
+
+        <TableRow>
+            <Button
+                android:layout_column="1"
+                android:text="Basic"
+                android:gravity="center"
+                android:padding="3dip"
+                android:textColor="#ffffff"
+                android:background="#cb4545"
+                android:onClick="sendBasic" />
+            <Button
+                android:text="PortFor"
+                android:gravity="center"
+                android:padding="3dip"
+                android:textColor="#ffffff"
+                android:id="@+id/portFor"
+                android:background="#6e1616"
+                android:onClick="sendPortFor" />
+            <Button
+                android:text="Search"
+                android:gravity="center"
+                android:padding="3dip"
+                android:textColor="#ffffff"
+                android:id="@+id/search"
+                android:background="#cb4545"
+                android:onClick="sendSearch" />
+            <Button
+                android:text="Tools"
+                android:gravity="center"
+                android:padding="3dip"
+                android:textColor="#ffffff"
+                android:id="@+id/tools"
+                android:background="#6e1616" />
+        </TableRow>
+
+    </TableLayout>
+
+</RelativeLayout>
