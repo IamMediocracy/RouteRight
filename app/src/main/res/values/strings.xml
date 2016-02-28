@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">RouteRight</string>
+    <string name="action_settings">Settings</string>
+    <string name="admin_pass_text">Enter Admin Password:</string>
+    <string name="ip_text">Enter IP Address:</string>
+    <string name="title_activity_connected_main">connectedMain</string>
+    <string name="title_activity_port_forward_main">port_forward_main</string>
+    <string name="title_activity_basic_layout">basic_layout</string>
+    <string name="title_activity_search">search</string>
+    <string name="fail_entry">Whoops! Looks like the Admin Password doesn\'t match with that IP Address!</string>
+    <string name="success">System O.K.</string>
+    <string name="warning">Warning!\nOne or more are currently port forwarded. This may cause problems, would you like to continue?</string>
+
+</resources>

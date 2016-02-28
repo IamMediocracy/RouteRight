@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="asmagill.routeright.MainPage"
+    tools:showIn="@layout/activity_main_page"
+    android:background="#ad2929">
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:height="50dp"
+        android:id="@+id/IPAddress"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="23dp" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/AdminPass"
+        android:height="50dp"
+        android:layout_below="@+id/AdPass_text"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter IP Address:"
+        android:id="@+id/IPAdd_text"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="22dp"
+        android:textColor="#ffffff"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/admin_pass_text"
+        android:id="@+id/AdPass_text"
+        android:textSize="22dp"
+        android:layout_below="@+id/IPAddress"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffff"
+        android:textStyle="bold|italic" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Connect"
+        android:id="@+id/connect_button"
+        android:layout_above="@+id/SSID"
+        android:layout_alignEnd="@+id/status_val"
+        android:layout_marginBottom="29dp"
+        android:textColor="#ffffff"
+        android:background="#1b8e01"
+        android:textSize="25dp"
+        android:textStyle="italic"
+        android:onClick="sendConnect" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SSID:"
+        android:id="@+id/SSID"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/AdPass_text"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status:"
+        android:id="@+id/status"
+        android:layout_below="@+id/SSID"
+        android:layout_alignStart="@+id/SSID"
+        android:layout_marginTop="22dp"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gateway:"
+        android:id="@+id/gateway"
+        android:layout_below="@+id/status"
+        android:layout_alignStart="@+id/status"
+        android:layout_marginTop="23dp"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Subnet Mask:"
+        android:id="@+id/SubnetMask"
+        android:layout_below="@+id/gateway"
+        android:layout_alignStart="@+id/gateway"
+        android:layout_marginTop="23dp"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mac Address:"
+        android:id="@+id/macAddress"
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/SubnetMask"
+        android:layout_alignEnd="@+id/SubnetMask"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DNS:"
+        android:id="@+id/DNS"
+        android:layout_below="@+id/macAddress"
+        android:layout_alignStart="@+id/macAddress"
+        android:layout_marginTop="23dp"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="&quot;name&quot;"
+        android:id="@+id/SSID_val"
+        android:layout_alignBottom="@+id/SSID"
+        android:layout_alignParentEnd="true"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Connected"
+        android:id="@+id/status_val"
+        android:layout_above="@+id/gateway"
+        android:layout_alignParentEnd="true"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="192.168.15.1"
+        android:id="@+id/gateway_val"
+        android:layout_above="@+id/SubnetMask"
+        android:layout_alignParentEnd="true"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="255.255.255.0"
+        android:id="@+id/SubnetMask_val"
+        android:layout_above="@+id/macAddress"
+        android:layout_alignEnd="@+id/status_val"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="60:8F:5C:19:BC:90"
+        android:id="@+id/macAddress_val"
+        android:layout_above="@+id/DNS"
+        android:layout_alignEnd="@+id/SubnetMask_val"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="192.168.15.1"
+        android:id="@+id/DNS_val"
+        android:layout_alignBottom="@+id/DNS"
+        android:layout_alignParentEnd="true"
+        android:textColor="#ffffff" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="Auto Detect"
+        android:id="@+id/auto_detect"
+        android:layout_below="@+id/AdminPass"
+        android:layout_centerHorizontal="true"
+        android:textSize="10dp" />
+</RelativeLayout>
