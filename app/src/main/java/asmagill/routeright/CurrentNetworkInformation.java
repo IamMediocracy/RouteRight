@@ -6,9 +6,7 @@ import android.net.DhcpInfo;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-import android.app.Activity;
 import android.os.Build;
-import android.support.v4.content.res.TypedArrayUtils;
 
 import org.eclipse.jetty.util.ArrayUtil;
 
@@ -37,6 +35,9 @@ public class CurrentNetworkInformation {
     private String linkSpeed;
     private String macAddress;
 
+    private int ipAddressint;
+    private int netmaskint;
+
     public CurrentNetworkInformation(Context mContext) {
 
         ConnectivityManager connManager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -51,24 +52,27 @@ public class CurrentNetworkInformation {
 
             isConnected = true;
 
-            dnsOne = String.valueOf(dhcp.dns1);
-            dnsTwo = String.valueOf(dhcp.dns2);
-            gateway = String.valueOf(dhcp.gateway);
-            ipAddress = String.valueOf(dhcp.ipAddress);
+            dnsOne = AddressFormatter.integerToInetAddress(dhcp.dns1);
+            dnsTwo = AddressFormatter.integerToInetAddress(dhcp.dns2);
+            gateway = AddressFormatter.integerToInetAddress(dhcp.gateway);
+            ipAddress = AddressFormatter.integerToInetAddress(dhcp.ipAddress);
             leaseLength = String.valueOf(dhcp.leaseDuration);
-            netmask = String.valueOf(dhcp.netmask);
-            serverAddress = String.valueOf(dhcp.serverAddress);
+            netmask = AddressFormatter.integerToInetAddress(dhcp.netmask);
+            serverAddress = AddressFormatter.integerToInetAddress(dhcp.serverAddress);
 
-            SSID = String.valueOf(wifiInfo.getSSID());
+            ipAddressint = dhcp.ipAddress;
+            netmaskint = dhcp.netmask;
+
+            SSID = wifiInfo.getSSID();
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                frequency = String.valueOf(wifiInfo.getFrequency());
+                frequency = String.valueOf(wifiInfo.getFrequency()) + " MHz";
             } else {
                 frequency = "Android Version too old.";
             }
 
-            linkSpeed = String.valueOf(wifiInfo.getLinkSpeed());
-            macAddress = String.valueOf(wifiInfo.getMacAddress());
+            linkSpeed = String.valueOf(wifiInfo.getLinkSpeed()) + " Mbps";
+            macAddress = wifiInfo.getMacAddress();
 
 
         } else {
@@ -139,4 +143,161 @@ public class CurrentNetworkInformation {
     public String getSSID() {
         return SSID;
     }
+
+    public String getNetworkAddress() {
+
+        int octet = 0;
+
+        String [] subnet = netmask.split("\\.");
+        String [] ipaddresssplit = ipAddress.split("\\.");
+
+
+
+        for(String token: subnet){
+            if(!token.contains("255")){
+                break;
+            }
+            octet++;
+        }
+
+
+
+        int[] netbits = getBits(Integer.parseInt(subnet[octet]));
+
+        int[] ipbits = getBits(Integer.parseInt(ipaddresssplit[octet]));
+
+        int borrowed = 0;
+        for(int num: netbits){
+            if(num == 1){
+                borrowed++;
+            }
+        }
+
+        for(int i = borrowed; i < 8; i++){
+            ipbits[i] = 0;
+        }
+
+        for(int i = octet + 1; i < 4; i++){
+            ipaddresssplit[i] = "0";
+        }
+
+        String rebuild = "";
+
+        for(int i = 0; i < 4; i++){
+            if(i == octet){
+                rebuild = rebuild + getNumberFromBits(ipbits);
+            } else {
+                rebuild = rebuild + ipaddresssplit[i];
+            }
+
+            if(i != 3){
+                rebuild = rebuild + ".";
+            }
+
+        }
+
+        return rebuild;
+    }
+
+    private int[] getBits(int num){
+        int[] bits = new int[8];
+
+        if(num >= 128){
+            bits[0] = 1;
+            num -= 128;
+        } else {
+            bits[0] = 0;
+        }
+
+        if(num >= 64){
+            bits[1] = 1;
+            num -= 64;
+        } else {
+            bits[1] = 0;
+        }
+
+        if(num >= 32){
+            bits[2] = 1;
+            num -= 32;
+        } else {
+            bits[2] = 0;
+        }
+
+        if(num >= 16){
+            bits[3] = 1;
+            num -= 16;
+        } else {
+            bits[3] = 0;
+        }
+
+        if(num >= 8){
+            bits[4] = 1;
+            num -= 8;
+        } else {
+            bits[4] = 0;
+        }
+
+        if(num >= 4){
+            bits[5] = 1;
+            num -= 4;
+        } else {
+            bits[5] = 0;
+        }
+
+        if(num >= 2){
+            bits[6] = 1;
+            num -= 2;
+        } else {
+            bits[6] = 0;
+        }
+
+        if(num >= 1){
+            bits[7] = 1;
+            num -= 1;
+        } else {
+            bits[7] = 0;
+        }
+
+        return bits;
+    }
+
+    private int getNumberFromBits(int[] bits){
+
+        int result = 0;
+
+        if(bits[0] == 1){
+            result += 128;
+        }
+
+        if(bits[1] == 1){
+            result += 64;
+        }
+
+        if(bits[2] == 1){
+            result += 32;
+        }
+
+        if(bits[3] == 1){
+            result += 16;
+        }
+
+        if(bits[4] == 1){
+            result += 8;
+        }
+
+        if(bits[5] == 1){
+            result += 4;
+        }
+
+        if(bits[6] == 1){
+            result += 2;
+        }
+
+        if(bits[7] == 1){
+            result += 1;
+        }
+
+        return result;
+    }
+
 }

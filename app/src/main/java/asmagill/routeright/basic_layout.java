@@ -19,10 +19,13 @@ public class basic_layout extends AppCompatActivity {
 
         // Use these values to set values for display
         // values are currently set to defaults for display purpose
-        String ssid_val = "";
+
+    CurrentNetworkInformation info = new CurrentNetworkInformation(this);
+
+        String ssid_val = info.getSSID();
         String status_val = "";
         String type_val = "";
-        String network_val = "";
+        String network_val = info.getNetworkAddress();
         String ipAdd_val = "";
         String publicIp_val = "";
         String gateway_val = "";
