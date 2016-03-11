@@ -7,12 +7,11 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
-
-import org.eclipse.jetty.util.ArrayUtil;
-
-import java.math.BigInteger;
-import java.net.InetAddress;
-import java.util.Formatter;
+import java.io.BufferedInputStream;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * Created by william on 3/8/16.
@@ -37,6 +36,8 @@ public class CurrentNetworkInformation {
 
     private int ipAddressint;
     private int netmaskint;
+
+    private String publicIP;
 
     public CurrentNetworkInformation(Context mContext) {
 
@@ -74,6 +75,7 @@ public class CurrentNetworkInformation {
             linkSpeed = String.valueOf(wifiInfo.getLinkSpeed()) + " Mbps";
             macAddress = wifiInfo.getMacAddress();
 
+            publicIP = getPublicIPAddress();
 
         } else {
 
@@ -90,6 +92,7 @@ public class CurrentNetworkInformation {
             SSID = "...";
             linkSpeed = "...";
             macAddress = "...";
+            publicIP = "...";
         }
 
     }
@@ -143,6 +146,8 @@ public class CurrentNetworkInformation {
     public String getSSID() {
         return SSID;
     }
+
+    public String getPublicIP() { return publicIP; }
 
     public String getNetworkAddress() {
 
@@ -298,6 +303,47 @@ public class CurrentNetworkInformation {
         }
 
         return result;
+    }
+
+    private String getPublicIPAddress(){
+
+        URL url = null;
+        try {
+            url = new URL("http://whatismyip.akamai.com");
+        } catch (MalformedURLException e) {
+            return "Not Obtainable";
+        }
+
+        try {
+        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+
+            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+            convertInputStreamToString(in);
+            urlConnection.disconnect();
+
+            return scrapeIpAddress(convertInputStreamToString(in));
+
+        } catch (Exception e){
+            return "Not Obtainable";
+        }
+
+    }
+
+    private String scrapeIpAddress(String in){
+
+        int start = in.indexOf("<body>");
+        int end = in.indexOf("</body>");
+
+        if (start != -1) {
+            return in.substring(start + "<title>".length(), end);
+        }
+
+        return "Not Obtainable";
+    }
+
+    private String convertInputStreamToString(InputStream in){
+        java.util.Scanner s = new java.util.Scanner(in).useDelimiter("\\A");
+        return s.hasNext() ? s.next() : "";
     }
 
 }
