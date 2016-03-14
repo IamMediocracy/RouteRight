@@ -10,6 +10,7 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -34,11 +35,9 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
-    compile files('libs/cling-core-2.1.0.jar')
-    compile group: 'org.eclipse.jetty', name: 'jetty-server', version: '9.3.8.RC0'
-    compile group: 'org.eclipse.jetty', name: 'jetty-servlet', version: '9.3.8.RC0'
-    compile group: 'org.eclipse.jetty', name: 'jetty-client', version: '9.3.8.RC0'
-    compile group: 'org.slf4j', name: 'slf4j-jdk14', version: '1.7.18'
-
-
+   // compile files('libs/cling-core-2.1.0.jar')
+   // compile 'org.eclipse.jetty:jetty-server:9.3.8.RC0'
+   // compile 'org.eclipse.jetty:jetty-servlet:9.3.8.RC0'
+   // compile 'org.eclipse.jetty:jetty-client:9.3.8.RC0'
+   // compile 'org.slf4j:slf4j-jdk14:1.7.18'
 }

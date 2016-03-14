@@ -9,8 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
 
-import org.eclipse.jetty.client.HttpClient;
-import org.eclipse.jetty.client.HttpResponse;
+
 
 import java.util.ArrayList;
 import java.util.List;
