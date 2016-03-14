@@ -25,7 +25,7 @@
         android:textSize="30dp"
         android:textStyle="bold|italic"
         android:textColor="#ffffff" />
-
+<!--
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -234,13 +234,23 @@
 
     </TableLayout>
 
+-->
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/list"
+        android:layout_below="@+id/basicInfoTitle"
+        android:layout_above="@+id/tableLayout">
+    </ListView>
+
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:stretchColumns="1"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="41dp">
+        android:layout_marginBottom="41dp"
+        android:id="@+id/tableLayout">
 
         <TableRow>
             <Button
