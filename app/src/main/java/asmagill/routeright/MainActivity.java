@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         mTabHost.addTab(
                 mTabHost.newTabSpec("tab1").setIndicator("Info", null),
-                FragmentTab.class, null);
+                Fragment_Information.class, null);
         mTabHost.addTab(
                 mTabHost.newTabSpec("tab2").setIndicator("Port Map"),
                 Fragment_PortMap.class, null);
