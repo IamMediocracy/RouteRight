@@ -10,5 +10,7 @@
     <string name="fail_entry">Whoops! Looks like the Admin Password doesn\'t match with that IP Address!</string>
     <string name="success">System O.K.</string>
     <string name="warning">Warning!\nOne or more are currently port forwarded. This may cause problems, would you like to continue?</string>
+    <string name="title_activity_main_activity">RouteRight</string>
+
 
 </resources>

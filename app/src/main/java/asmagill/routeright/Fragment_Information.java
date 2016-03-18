@@ -1,37 +1,35 @@
 package asmagill.routeright;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
-
-
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class basic_layout extends AppCompatActivity {
+/**
+ * Created by William on 3/17/2016.
+ */
+public class Fragment_Information extends Fragment{
 
-    NetworkObjectEntryAdapter netAdapter;
+
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_basic_layout);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        return inflater.inflate(R.layout.content_basic_layout, container, false);
+    }
 
+    @Override
+    public void onActivityCreated(Bundle savedinstancestate) {
+        super.onActivityCreated(savedinstancestate);
 
+        ListView list = (ListView) getView().findViewById(R.id.list);
 
-
-
-        ListView list = (ListView) findViewById(R.id.list);
-
-        final NetworkObjectEntryAdapter netAdapter = new NetworkObjectEntryAdapter(this, R.layout.general_list_item);
+        final NetworkObjectEntryAdapter netAdapter = new NetworkObjectEntryAdapter(getActivity(), R.layout.general_list_item);
         list.setAdapter(netAdapter);
 
         for(final NetworkObject entry : getEntries()){
@@ -47,7 +45,7 @@ public class basic_layout extends AppCompatActivity {
         // Use these values to set values for display
         // values are currently set to defaults for display purpose
 
-        CurrentNetworkInformation info = new CurrentNetworkInformation(this);
+        CurrentNetworkInformation info = new CurrentNetworkInformation(getContext());
 
         //More values to add, add more fields.
         String ssid_val = info.getSSID();
@@ -83,23 +81,5 @@ public class basic_layout extends AppCompatActivity {
 
         return entries;
     }
-
-    public void sendBasic(View view) {
-        Intent intent = new Intent(this, basic_layout.class);
-        startActivity(intent);
-    }
-
-    public void sendSearch(View view) {
-        Intent intent = new Intent(this, search.class);
-        startActivity(intent);
-    }
-
-    public void sendPortFor(View view) {
-        Intent intent = new Intent(this, port_forward_main.class);
-        startActivity(intent);
-    }
-
-
-
 
 }
