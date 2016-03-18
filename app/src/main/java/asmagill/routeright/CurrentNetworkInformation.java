@@ -7,6 +7,8 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
+import android.util.Log;
+
 import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -52,19 +54,20 @@ public class CurrentNetworkInformation {
             WifiInfo wifiInfo = wifi.getConnectionInfo();
 
             isConnected = true;
-
-            dnsOne = AddressFormatter.integerToInetAddress(dhcp.dns1);
-            dnsTwo = AddressFormatter.integerToInetAddress(dhcp.dns2);
-            gateway = AddressFormatter.integerToInetAddress(dhcp.gateway);
-            ipAddress = AddressFormatter.integerToInetAddress(dhcp.ipAddress);
+            dnsOne = AddressFormatter.integerToInetAddress(dhcp.dns1, false);
+            dnsTwo = AddressFormatter.integerToInetAddress(dhcp.dns2, false);
+            gateway = AddressFormatter.integerToInetAddress(dhcp.gateway, false);
+            ipAddress = intToIp(dhcp.ipAddress);
             leaseLength = String.valueOf(dhcp.leaseDuration);
-            netmask = AddressFormatter.integerToInetAddress(dhcp.netmask);
-            serverAddress = AddressFormatter.integerToInetAddress(dhcp.serverAddress);
+            netmask = AddressFormatter.integerToInetAddress(dhcp.netmask, false);
+            serverAddress = AddressFormatter.integerToInetAddress(dhcp.serverAddress, false);
 
             ipAddressint = dhcp.ipAddress;
             netmaskint = dhcp.netmask;
 
             SSID = wifiInfo.getSSID();
+
+
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 frequency = String.valueOf(wifiInfo.getFrequency()) + " MHz";
@@ -76,6 +79,8 @@ public class CurrentNetworkInformation {
             macAddress = wifiInfo.getMacAddress();
 
             publicIP = getPublicIPAddress();
+
+            Log.i("CurrentNetworkInfo", "Get number ip" + intToIp(ipAddressint));
 
         } else {
 
@@ -311,7 +316,7 @@ public class CurrentNetworkInformation {
         try {
             url = new URL("http://whatismyip.akamai.com");
         } catch (MalformedURLException e) {
-            return "Not Obtainable";
+            return "Malformed URL";
         }
 
         try {
@@ -324,7 +329,7 @@ public class CurrentNetworkInformation {
             return scrapeIpAddress(convertInputStreamToString(in));
 
         } catch (Exception e){
-            return "Not Obtainable";
+            return "Failed to Get content";
         }
 
     }
@@ -344,6 +349,13 @@ public class CurrentNetworkInformation {
     private String convertInputStreamToString(InputStream in){
         java.util.Scanner s = new java.util.Scanner(in).useDelimiter("\\A");
         return s.hasNext() ? s.next() : "";
+    }
+
+    public String intToIp(int addr) {
+        return  ((addr & 0xFF) + "." +
+                ((addr >>>= 8) & 0xFF) + "." +
+                ((addr >>>= 8) & 0xFF) + "." +
+                ((addr >>>= 8) & 0xFF));
     }
 
 }
