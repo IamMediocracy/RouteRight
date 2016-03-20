@@ -8,10 +8,8 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.util.Log;
-
-import java.io.BufferedInputStream;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -19,8 +17,6 @@ import java.net.URL;
  * Created by william on 3/8/16.
  */
 public class CurrentNetworkInformation {
-
-
 
     private String dnsOne;
     private String dnsTwo;
@@ -37,9 +33,8 @@ public class CurrentNetworkInformation {
     private String macAddress;
 
     private int ipAddressint;
-    private int netmaskint;
 
-    private String publicIP;
+    public final String[] publicIPArray = new String[1];
 
     public CurrentNetworkInformation(Context mContext) {
 
@@ -47,6 +42,47 @@ public class CurrentNetworkInformation {
         NetworkInfo networkInfo = connManager.getActiveNetworkInfo();
 
         if (networkInfo.isConnected()) {
+
+            Thread thread = new Thread(new Runnable(){
+                @Override
+                public void run() {
+                    URL url = null;
+                    try {
+                        url = new URL("http://whatismyip.akamai.com");
+                    } catch (MalformedURLException e) {
+                        return;
+                    }
+
+                    try {
+
+                        StringBuffer htmlCode = new StringBuffer();
+                        Log.i("CurrentNetworkInfo", "Opening URL Stream");
+                        BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+
+                        String inputLine;
+
+                        while ((inputLine = in.readLine()) != null) {
+                            htmlCode.append(inputLine);
+                        }
+
+                        publicIPArray[0] = htmlCode.toString();
+
+                    } catch (Exception e){
+                        Log.i("CurrentNetworkInfo", "Get number ip");
+                        e.printStackTrace();
+                        publicIPArray[0] = "Failed to Get content";
+
+                    }
+                }
+            });
+
+            thread.start();
+
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
             WifiManager wifi = (WifiManager) mContext.getSystemService(Context.WIFI_SERVICE);
 
@@ -61,13 +97,8 @@ public class CurrentNetworkInformation {
             leaseLength = String.valueOf(dhcp.leaseDuration);
             netmask = AddressFormatter.integerToInetAddress(dhcp.netmask, false);
             serverAddress = AddressFormatter.integerToInetAddress(dhcp.serverAddress, false);
-
             ipAddressint = dhcp.ipAddress;
-            netmaskint = dhcp.netmask;
-
             SSID = wifiInfo.getSSID();
-
-
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 frequency = String.valueOf(wifiInfo.getFrequency()) + " MHz";
@@ -77,8 +108,6 @@ public class CurrentNetworkInformation {
 
             linkSpeed = String.valueOf(wifiInfo.getLinkSpeed()) + " Mbps";
             macAddress = wifiInfo.getMacAddress();
-
-            publicIP = getPublicIPAddress();
 
             Log.i("CurrentNetworkInfo", "Get number ip" + intToIp(ipAddressint));
 
@@ -97,12 +126,10 @@ public class CurrentNetworkInformation {
             SSID = "...";
             linkSpeed = "...";
             macAddress = "...";
-            publicIP = "...";
+            publicIPArray[0] = "...";
         }
 
     }
-
-
 
     public String getDnsOne() {
         return dnsOne;
@@ -152,7 +179,7 @@ public class CurrentNetworkInformation {
         return SSID;
     }
 
-    public String getPublicIP() { return publicIP; }
+    public String getPublicIP() { return publicIPArray[0]; }
 
     public String getNetworkAddress() {
 
@@ -169,8 +196,6 @@ public class CurrentNetworkInformation {
             }
             octet++;
         }
-
-
 
         int[] netbits = getBits(Integer.parseInt(subnet[octet]));
 
@@ -310,30 +335,6 @@ public class CurrentNetworkInformation {
         return result;
     }
 
-    private String getPublicIPAddress(){
-
-        URL url = null;
-        try {
-            url = new URL("http://whatismyip.akamai.com");
-        } catch (MalformedURLException e) {
-            return "Malformed URL";
-        }
-
-        try {
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-
-            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-            convertInputStreamToString(in);
-            urlConnection.disconnect();
-
-            return scrapeIpAddress(convertInputStreamToString(in));
-
-        } catch (Exception e){
-            return "Failed to Get content";
-        }
-
-    }
-
     private String scrapeIpAddress(String in){
 
         int start = in.indexOf("<body>");
@@ -346,16 +347,10 @@ public class CurrentNetworkInformation {
         return "Not Obtainable";
     }
 
-    private String convertInputStreamToString(InputStream in){
-        java.util.Scanner s = new java.util.Scanner(in).useDelimiter("\\A");
-        return s.hasNext() ? s.next() : "";
-    }
-
     public String intToIp(int addr) {
         return  ((addr & 0xFF) + "." +
                 ((addr >>>= 8) & 0xFF) + "." +
                 ((addr >>>= 8) & 0xFF) + "." +
                 ((addr >>>= 8) & 0xFF));
     }
-
 }
