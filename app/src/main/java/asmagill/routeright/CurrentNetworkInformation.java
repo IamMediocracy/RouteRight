@@ -94,7 +94,7 @@ public class CurrentNetworkInformation {
             dnsTwo = AddressFormatter.integerToInetAddress(dhcp.dns2, false);
             gateway = AddressFormatter.integerToInetAddress(dhcp.gateway, false);
             ipAddress = intToIp(dhcp.ipAddress);
-            leaseLength = String.valueOf(dhcp.leaseDuration);
+            leaseLength = getLeaseLengthString(dhcp.leaseDuration);
             netmask = AddressFormatter.integerToInetAddress(dhcp.netmask, false);
             serverAddress = AddressFormatter.integerToInetAddress(dhcp.serverAddress, false);
             ipAddressint = dhcp.ipAddress;
@@ -352,5 +352,44 @@ public class CurrentNetworkInformation {
                 ((addr >>>= 8) & 0xFF) + "." +
                 ((addr >>>= 8) & 0xFF) + "." +
                 ((addr >>>= 8) & 0xFF));
+    }
+
+    private String getLeaseLengthString(int secs){
+
+        if(secs <= 0){
+            return "No Lease";
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        if( secs >= 2592000 ){
+            int months = secs/2592000;
+            secs = secs - (months * 2592000);
+            sb.append("Months: " + months + ", ");
+        }
+
+        if( secs >= 86400){
+            int days = secs/86400;
+            secs = secs - (days * 86400);
+            sb.append("Days: " + days + ", ");
+        }
+
+        if( secs > 3600){
+            int hours = secs/3600;
+            secs = secs - (hours * 3600);
+            sb.append("Hours: " + hours+ ", ");
+        }
+
+        if( secs > 60){
+            int mins = secs/60;
+            secs = secs - (mins * 60);
+            sb.append("Mins: " + mins + ", ");
+        }
+
+        if(secs > 0){
+            sb.append("Secs: " + secs + ", ");
+        }
+
+        return sb.substring(0, sb.length() - 2);
     }
 }

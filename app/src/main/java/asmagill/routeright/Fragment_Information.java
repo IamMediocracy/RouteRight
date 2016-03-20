@@ -62,10 +62,11 @@ public class Fragment_Information extends Fragment{
 
 
         //Added Strings
-
         String frequency_val = info.getFrequency();
         String linkspeed_val = info.getLinkSpeed();
+        String lease_length = info.getLeaseLength();
 
+        //Adds network objects to ListView
         entries.add(new NetworkObject("Status: ", status_val));
         entries.add(new NetworkObject("SSID: ", ssid_val));
         entries.add(new NetworkObject("IP Address: ", ipAdd_val));
@@ -78,6 +79,7 @@ public class Fragment_Information extends Fragment{
         entries.add(new NetworkObject("DHCP: ", dhcp_val));
         entries.add(new NetworkObject("Frequency: ", frequency_val));
         entries.add(new NetworkObject("Link Speed: ", linkspeed_val));
+        entries.add(new NetworkObject("Lease Length: ", lease_length));
 
         return entries;
     }
