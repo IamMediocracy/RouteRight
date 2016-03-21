@@ -11,6 +11,9 @@
     <string name="success">System O.K.</string>
     <string name="warning">Warning!\nOne or more are currently port forwarded. This may cause problems, would you like to continue?</string>
     <string name="title_activity_main_activity">RouteRight</string>
+    <string name="add">Add</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
 
 
 </resources>

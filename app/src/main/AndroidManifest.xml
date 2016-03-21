@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="asmagill.routeright">
+    package="asmagill.routeright"
+    >
 
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -16,6 +17,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:name="android.support.multidex.MultiDexApplication"
         >
 
       <activity android:name=".SplashScreen"

@@ -12,6 +12,6 @@ import android.view.ViewGroup;
 public class Fragment_PortMap extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        return inflater.inflate(R.layout.content_port_forward_main, container, false);
+        return inflater.inflate(R.layout.portmapping_main, container, false);
     }
 }

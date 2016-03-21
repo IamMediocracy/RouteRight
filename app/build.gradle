@@ -11,16 +11,24 @@ android {
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
+        testInstrumentationRunner "com.android.test.runner.MultiDexTestRunner"
     }
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled true
+            multiDexEnabled true
         }
 
         debug {
             debuggable true
         }
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
     }
 
 
@@ -28,17 +36,19 @@ android {
 
 repositories {
     mavenCentral()
+    maven { url 'http://4thline.org/m2'}
 }
 
 dependencies {
+    compile 'com.android.support:multidex:1.0.1'
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
     compile group: 'org.apache.httpcomponents' , name: 'httpclient-android' , version: '4.3.5.1'
-   // compile files('libs/cling-core-2.1.0.jar')
-   // compile 'org.eclipse.jetty:jetty-server:9.3.8.RC0'
-   // compile 'org.eclipse.jetty:jetty-servlet:9.3.8.RC0'
-   // compile 'org.eclipse.jetty:jetty-client:9.3.8.RC0'
-   // compile 'org.slf4j:slf4j-jdk14:1.7.18'
+    compile 'org.fourthline.cling:cling-core:2.1.0'
+    compile group: 'org.eclipse.jetty', name: 'jetty-server', version:'9.2.15.v20160210'
+    compile group: 'org.eclipse.jetty', name: 'jetty-servlet', version:'9.2.15.v20160210'
+    compile group: 'org.eclipse.jetty', name: 'jetty-client', version:'9.2.15.v20160210'
+    compile group: 'org.slf4j', name: 'slf4j-jdk14', version:'1.7.19'
 }
