@@ -14,6 +14,8 @@
     <string name="add">Add</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
-
+    <string name="tools">Tools</string>
+    <string name="ping">Ping</string>
+    <string name="ip_address">IP Address:</string>
 
 </resources>

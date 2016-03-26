@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 mTabHost.newTabSpec("tab2").setIndicator("Port Map"),
                 Fragment_PortMap.class, null);
         mTabHost.addTab(
-                mTabHost.newTabSpec("tab3").setIndicator("Suggestions", null),
+                mTabHost.newTabSpec("tab3").setIndicator("Tools", null),
                 Fragment_Search.class, null);
         mTabHost.addTab(
                 mTabHost.newTabSpec("tab4").setIndicator("Search", null),
