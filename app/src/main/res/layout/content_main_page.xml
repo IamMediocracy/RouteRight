@@ -11,7 +11,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="asmagill.routeright.MainPage"
     tools:showIn="@layout/activity_main_page"
-    android:background="#ad2929">
+    android:background="#4169E1">
 
     <EditText
         android:layout_width="fill_parent"
@@ -61,7 +61,7 @@
         android:layout_alignEnd="@+id/status_val"
         android:layout_marginBottom="29dp"
         android:textColor="#ffffff"
-        android:background="#1b8e01"
+        android:background="#1B9772"
         android:textSize="25dp"
         android:textStyle="italic"
         android:onClick="sendConnect" />
