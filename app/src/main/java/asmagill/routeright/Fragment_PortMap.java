@@ -80,6 +80,15 @@ public class Fragment_PortMap extends ListFragment{
 
     }
 
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if (upnpService != null) {
+            upnpService.getRegistry().removeListener(registryListener);
+        }
+        // This will stop the UPnP service if nobody else is bound to it
+        getActivity().getApplicationContext().unbindService(serviceConnection);
+    }
         @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         return inflater.inflate(R.layout.portmapping_main, container, false);
