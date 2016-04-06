@@ -29,36 +29,8 @@ import org.fourthline.cling.registry.Registry;
 public class Fragment_PortMap extends ListFragment{
 
 
-    private ArrayAdapter<DeviceDisplay> listAdapter;
 
-    private BrowseRegistryListener registryListener = new BrowseRegistryListener();
 
-    private AndroidUpnpService upnpService;
-
-    private ServiceConnection serviceConnection = new ServiceConnection() {
-
-        public void onServiceConnected(ComponentName className, IBinder service) {
-            upnpService = (AndroidUpnpService) service;
-
-            // Clear the list
-            listAdapter.clear();
-
-            // Get ready for future device advertisements
-            upnpService.getRegistry().addListener(registryListener);
-
-            // Now add all devices to the list we already know about
-            for (Device device : upnpService.getRegistry().getDevices()) {
-                registryListener.deviceAdded(device);
-            }
-
-            // Search asynchronously for all devices, they will respond soon
-            upnpService.getControlPoint().search();
-        }
-
-        public void onServiceDisconnected(ComponentName className) {
-            upnpService = null;
-        }
-    };
 
 
     @Override
@@ -67,91 +39,22 @@ public class Fragment_PortMap extends ListFragment{
 
         org.seamless.util.logging.LoggingUtil.resetRootHandler(new FixedAndroidLogHandler());
 
-        listAdapter = new ArrayAdapter<>(this.getContext(), android.R.layout.simple_list_item_1);
-        setListAdapter(listAdapter);
-
-        // This will start the UPnP service if it wasn't already started
-        getActivity().getApplicationContext().bindService(
-                new Intent(this.getContext(), AndroidUpnpServiceImpl.class),
-                serviceConnection,
-                Context.BIND_AUTO_CREATE
-        );
-
-
-    }
-
-    @Override
-    public void onDestroy(){
-        super.onDestroy();
-        if (upnpService != null) {
-            upnpService.getRegistry().removeListener(registryListener);
+        if(AdapterHolder.adapter.isEmpty()){
+            AdapterHolder.adapter.add(new PortObjects("Please Wait..."));
         }
-        // This will stop the UPnP service if nobody else is bound to it
-        getActivity().getApplicationContext().unbindService(serviceConnection);
+
+        setListAdapter(AdapterHolder.adapter);
+
+
+
     }
+
+
         @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         return inflater.inflate(R.layout.portmapping_main, container, false);
     }
 
-    protected class BrowseRegistryListener extends DefaultRegistryListener {
 
-        /* Discovery performance optimization for very slow Android devices! */
-        @Override
-        public void remoteDeviceDiscoveryStarted(Registry registry, RemoteDevice device) {
-            deviceAdded(device);
-        }
-
-        @Override
-        public void remoteDeviceDiscoveryFailed(Registry registry, final RemoteDevice device, final Exception ex) {
-
-            deviceRemoved(device);
-        }
-    /* End of optimization, you can remove the whole block if your Android handset is fast (>= 600 Mhz) */
-
-        @Override
-        public void remoteDeviceAdded(Registry registry, RemoteDevice device) {
-            deviceAdded(device);
-        }
-
-        @Override
-        public void remoteDeviceRemoved(Registry registry, RemoteDevice device) {
-            deviceRemoved(device);
-        }
-
-        @Override
-        public void localDeviceAdded(Registry registry, LocalDevice device) {
-            deviceAdded(device);
-        }
-
-        @Override
-        public void localDeviceRemoved(Registry registry, LocalDevice device) {
-            deviceRemoved(device);
-        }
-
-        public void deviceAdded(final Device device) {
-            getActivity().runOnUiThread(new Runnable() {
-                public void run() {
-                    DeviceDisplay d = new DeviceDisplay(device);
-                    int position = listAdapter.getPosition(d);
-                    if (position >= 0) {
-                        // Device already in the list, re-set new value at same position
-                        listAdapter.remove(d);
-                        listAdapter.insert(d, position);
-                    } else {
-                        listAdapter.add(d);
-                    }
-                }
-            });
-        }
-
-        public void deviceRemoved(final Device device) {
-            getActivity().runOnUiThread(new Runnable() {
-                public void run() {
-                    listAdapter.remove(new DeviceDisplay(device));
-                }
-            });
-        }
-    }
 
 }

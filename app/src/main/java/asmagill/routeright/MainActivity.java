@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
 
     private FragmentTabHost mTabHost;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +30,12 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayUseLogoEnabled(true);
             getSupportActionBar().setIcon(R.mipmap.ic_launcher);
         }
+
+        AdapterHolder.adapter = new PortObjectsAdapter(this,
+                R.layout.service_list_item);
+
+        NetworkingStuuf m= new NetworkingStuuf(AdapterHolder.adapter);
+        m.execute();
 
         mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);

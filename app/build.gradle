@@ -51,4 +51,5 @@ dependencies {
     compile group: 'org.eclipse.jetty', name: 'jetty-servlet', version:'8.1.19.v20160209'
     compile group: 'org.eclipse.jetty', name: 'jetty-client', version:'8.1.19.v20160209'
     compile group: 'org.slf4j', name: 'slf4j-jdk14', version:'1.7.19'
+    compile files('libs/upnplib-mobile.jar')
 }
