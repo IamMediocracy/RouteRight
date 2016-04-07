@@ -29,6 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@android:id/list"
+        android:textColor="#ffffff"
         android:layout_below="@+id/basicInfoTitle"
         >
     </ListView>

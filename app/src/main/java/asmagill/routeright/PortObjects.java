@@ -40,6 +40,11 @@ public class PortObjects {
     }
 
     public String getAddress(){
+
+        if(address == null){
+            return "";
+        }
+
         return address;
     }
 
