@@ -33,39 +33,37 @@
                 android:layout_weight="0.8"></ListView>
 
 
-        <TableLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.2"
-
+            android:orientation="horizontal"
             >
 
-            <TableRow
-                android:layout_height="0dp"
-                android:layout_width="match_parent"
-                android:layout_weight="1">
+
                 <Button
                         android:id="@+id/portmap_edit"
                         android:text="@string/edit"
-                        android:layout_span="1"
-                        android:layout_width="match_parent"
+
+                        android:layout_width="0dp"
+                        android:layout_weight=".25"
                         android:layout_height="match_parent"
                     />
                 <Button
                     android:id="@+id/portmap_delete"
                     android:text="@string/delete"
-                    android:layout_span="1"
-                    android:layout_width="match_parent"
+                    android:layout_weight=".25"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     />
                 <Button
                     android:id="@+id/portmap_add"
                     android:text="@string/add"
-                    android:layout_span="1"
-                    android:layout_width="match_parent"
+                    android:layout_weight=".50"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" />
-            </TableRow>
-        </TableLayout>
+                     />
+
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
