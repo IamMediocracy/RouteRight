@@ -64,7 +64,8 @@
             android:id="@+id/ping_calculate"
             android:layout_below="@+id/ping_address"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="26dp" />
+            android:layout_marginTop="26dp"
+            android:onClick="pinger"/>
 
         <TextView
             android:layout_width="wrap_content"
