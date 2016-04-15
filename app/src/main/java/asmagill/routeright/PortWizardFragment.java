@@ -90,6 +90,20 @@ public class PortWizardFragment extends Fragment {
 
     @Override
     public void onPause() {
+
+        saveValues();
+        super.onPause();
+    }
+
+    public void onSubmit(){
+        Application_Information.curr_ip = "";
+        Application_Information.curr_appname = "";
+        AdapterHolder.apps_adapter = null;
+
+    }
+
+    public void saveValues(){
+
         EditText edtProcessName = (EditText) getActivity().findViewById(R.id.custom_service_name);
         EditText ip = (EditText) getActivity().findViewById(R.id.custom_ip_address);
 
@@ -100,13 +114,6 @@ public class PortWizardFragment extends Fragment {
         if(!edtProcessName.getText().toString().equals("")) {
             Application_Information.curr_appname = edtProcessName.getText().toString();
         }
-        super.onPause();
-    }
-
-    public void onSubmit(){
-        Application_Information.curr_ip = "";
-        Application_Information.curr_appname = "";
-        AdapterHolder.apps_adapter = null;
 
     }
 }
