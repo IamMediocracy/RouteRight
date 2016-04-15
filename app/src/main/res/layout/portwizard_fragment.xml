@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
+<asmagill.routeright.VerticalScroll
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -42,7 +42,7 @@
 
 
     <ListView
-        android:id="@android:id/list"
+        android:id="@+id/app_list"
         android:layout_width="0dp"
         android:layout_height="match_parent"
 
@@ -55,6 +55,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
+
             />
     </LinearLayout>
     <TextView
@@ -72,6 +73,7 @@
         >
 
         <EditText
+            android:id="@+id/custom_service_name"
         android:layout_width="0dp"
         android:layout_weight=".80"
         android:layout_height="match_parent" />
@@ -91,6 +93,7 @@
         android:orientation="horizontal"
         >
         <EditText
+            android:id="@+id/custom_ip_address"
             android:layout_width="0dp"
             android:layout_weight=".80"
             android:layout_height="match_parent"
@@ -106,4 +109,4 @@
         />
 
 </LinearLayout>
-</ScrollView>
+</asmagill.routeright.VerticalScroll>
