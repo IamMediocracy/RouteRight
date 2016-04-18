@@ -24,4 +24,8 @@
     <string name="Service_Name">Service Name: </string>
     <string name="applications">Applications: </string>
     <string name="accept">Accept</string>
+    <string name="tcp">TCP</string>
+    <string name="udp">UDP</string>
+    <string name="ports">Ports:</string>
+    <string name="add_ports">Add Port</string>
 </resources>

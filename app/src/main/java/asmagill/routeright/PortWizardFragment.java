@@ -51,15 +51,27 @@ public class PortWizardFragment extends Fragment {
             public void onClick(View v) {
                 EditText edt = (EditText) getView().findViewById(R.id.searchbox);
 
-
-
                 runSearch(edt.getText().toString());
+
+
 
 
 
             }
         });
 
+        Button accept = ( Button ) getView().findViewById(R.id.accept_button);
+
+        accept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText edtProcessName = (EditText) getActivity().findViewById(R.id.custom_service_name);
+                EditText ip = (EditText) getActivity().findViewById(R.id.custom_ip_address);
+
+                add_ports(edtProcessName.getText().toString(), ip.getText().toString());
+
+            }
+        });
 
         EditText edtProcessName = (EditText) getActivity().findViewById(R.id.custom_service_name);
         EditText ip = (EditText) getActivity().findViewById(R.id.custom_ip_address);
@@ -79,7 +91,32 @@ public class PortWizardFragment extends Fragment {
         DatabaseSearch m= new DatabaseSearch(str, AdapterHolder.apps_adapter);
         m.execute();
 
+
     }
+
+    public void add_ports(String process_name, String ip){
+
+       String ref = Application_Information.curr_appname;
+        AddPorts add = new AddPorts(Application_Information.curr_appname, process_name, ip);
+        add.execute();
+
+        Application_Information.curr_appname = null;
+        Application_Information.curr_ip = "";
+        Application_Information.curr_search_selected = "";
+
+        AdapterHolder.adapter.clear();
+        AdapterHolder.adapter.add(new PortObjects("Please Wait..."));
+
+        getActivity().finish();
+
+    }
+
+    public void add_ports(){
+
+
+    }
+
+
 
     public void updateUI(){
         EditText edtProcessName = (EditText) getActivity().findViewById(R.id.custom_service_name);
