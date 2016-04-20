@@ -67,6 +67,11 @@
             android:label="@string/port_wizard"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
+        <activity
+            android:name=".Fragment_PortMap_Delete"
+            android:label="@string/delete"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
         <service android:name="org.fourthline.cling.android.AndroidUpnpServiceImpl"/>
 
     </application>

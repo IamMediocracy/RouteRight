@@ -26,6 +26,10 @@ public class Application_Information {
     public static String tcp_port;
     public static String udp_port;
 
+    //Used For Port Deletion Activity
+    public static String delete_select;
+    public static PortObjects service;
+
     public static boolean isNetworkAvailable(Context ctxt) {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) ctxt.getSystemService(Context.CONNECTIVITY_SERVICE);

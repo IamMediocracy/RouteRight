@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:layout_width="75dp"
+        android:layout_height="50dp"
+        android:text="@string/back"
+        android:id="@+id/delete_back_button" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.75"
+            android:layout_height="match_parent"
+            android:text="@string/delete"
+            android:textSize="34sp"
+            android:textAlignment="viewStart"
+            android:layout_marginTop="10dp"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".70"
+            android:id="@+id/delete_list"
+            ></ListView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".15"
+            android:textSize="20sp"
+            android:textAlignment="textStart"
+            android:text="Selected: "
+            android:id="@+id/delete_selected"
+            android:textColor="@color/black"
+            android:layout_marginTop="15dp"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".15"
+            android:text="@string/delete"
+            android:enabled="false"
+            android:id="@+id/delete_button" />
+
+</LinearLayout>
+</LinearLayout>

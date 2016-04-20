@@ -55,7 +55,13 @@ public class Fragment_PortMap extends ListFragment{
 
         setListAdapter(AdapterHolder.adapter);
 
-
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Fragment_PortMap_Delete.class);
+                getActivity().startActivity(intent);
+            }
+        });
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
