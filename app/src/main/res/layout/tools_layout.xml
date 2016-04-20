@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="asmagill.routeright.MainActivity"
-    android:background="#4169E1">
+    android:background="#1b9bff">
 
     <TextView
         android:layout_width="match_parent"
