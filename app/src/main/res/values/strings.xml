@@ -17,5 +17,15 @@
     <string name="tools">Tools</string>
     <string name="ping">Ping</string>
     <string name="ip_address">IP Address:</string>
-
+    <string name="back">Back</string>
+    <string name="port_wizard">Port Wizard</string>
+    <string name="manual">Manual</string>
+    <string name="ok">OK</string>
+    <string name="Service_Name">Service Name: </string>
+    <string name="applications">Applications: </string>
+    <string name="accept">Accept</string>
+    <string name="tcp">TCP</string>
+    <string name="udp">UDP</string>
+    <string name="ports">Ports:</string>
+    <string name="add_ports">Add Port</string>
 </resources>

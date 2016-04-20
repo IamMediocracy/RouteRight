@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<asmagill.routeright.VerticalScroll
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+<LinearLayout
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/Service_Name"
+        android:textSize="25sp"
+        />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+
+    android:orientation="horizontal"
+    >
+    <EditText
+        android:layout_width="0dp"
+        android:layout_weight=".80"
+        android:layout_height="match_parent"
+        android:id="@+id/manual_service_name" />
+
+</LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textSize="25sp"
+        android:layout_marginTop="30dp"
+        android:text="@string/ports" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        >
+
+
+    <ListView
+        android:id="@+id/tcp_ports"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+
+        android:paddingBottom="10dp"
+        android:layout_weight="0.5">
+
+    </ListView>
+        <ListView
+            android:id="@+id/udp_ports"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+
+            android:paddingBottom="10dp"
+            android:layout_weight="0.5">
+            </ListView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+
+        android:orientation="horizontal"
+        >
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="0.5"
+        android:layout_height="40dp"
+        android:textAlignment="center"
+        android:text="@string/tcp"
+        android:textSize="25sp"
+        />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="40dp"
+            android:textAlignment="center"
+            android:text="@string/udp"
+            android:textSize="25sp"
+            />
+
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+
+        android:orientation="horizontal"
+        >
+
+        <EditText
+            android:id="@+id/tcp_port_edt"
+        android:layout_width="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+        android:layout_weight=".50"
+        android:layout_height="match_parent" />
+
+        <EditText
+            android:id="@+id/udp_port_edt"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_width="0dp"
+            android:layout_weight=".50"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight=".5"
+            android:layout_height="50dp"
+            android:text="@string/add_ports"
+
+            android:id="@+id/accept_tcp_button"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight=".5"
+            android:layout_height="50dp"
+            android:text="@string/add_ports"
+
+            android:id="@+id/accept_udp_button"
+            />
+
+        </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/ip_address"
+        android:textSize="25sp"
+        />
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        >
+        <EditText
+            android:id="@+id/manual_custom_ip_address"
+            android:layout_width="0dp"
+            android:layout_weight=".80"
+            android:layout_height="match_parent"
+             />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/accept"
+        android:layout_marginTop="20dp"
+        android:id="@+id/manual_accept_button"
+        />
+
+</LinearLayout>
+</asmagill.routeright.VerticalScroll>

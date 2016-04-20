@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<asmagill.routeright.VerticalScroll
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+<LinearLayout
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+
+    android:orientation="horizontal"
+    >
+    <EditText
+        android:layout_width="0dp"
+        android:layout_weight=".80"
+        android:layout_height="match_parent"
+        android:id="@+id/searchbox" />
+    <Button
+        android:layout_width="0dp"
+        android:layout_weight=".20"
+        android:layout_height="match_parent"
+        android:text="@string/ok"
+        android:id="@+id/initiate_search" />
+</LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textSize="20sp"
+        android:layout_marginTop="30dp"
+        android:text="@string/applications" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        >
+
+
+    <ListView
+        android:id="@+id/app_list"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+
+        android:paddingBottom="10dp"
+        android:layout_weight="0.5">
+
+    </ListView>
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+
+            />
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/Service_Name"
+        android:textSize="25sp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:orientation="horizontal"
+        >
+
+        <EditText
+            android:id="@+id/custom_service_name"
+        android:layout_width="0dp"
+        android:layout_weight=".80"
+        android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/ip_address"
+        android:textSize="25sp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        >
+        <EditText
+            android:id="@+id/custom_ip_address"
+            android:layout_width="0dp"
+            android:layout_weight=".80"
+            android:layout_height="match_parent"
+             />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/accept"
+        android:layout_marginTop="20dp"
+        android:id="@+id/accept_button"
+        />
+
+</LinearLayout>
+</asmagill.routeright.VerticalScroll>

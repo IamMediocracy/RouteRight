@@ -17,6 +17,7 @@ public class NetworkingStuuf extends AsyncTask<Void, Void, ArrayList<PortObjects
 
     public PortObjectsAdapter adapter;
 
+
     public NetworkingStuuf (PortObjectsAdapter adapter){
         this.adapter = adapter;
     }
