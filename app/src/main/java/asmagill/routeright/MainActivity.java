@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setTitle(getTitle());
             getSupportActionBar().setDisplayUseLogoEnabled(true);
-            getSupportActionBar().setIcon(R.mipmap.ic_launcher);
+            getSupportActionBar().setIcon(R.mipmap.ic_launcher_real);
         }
 
         AdapterHolder.adapter = new PortObjectsAdapter(this,
