@@ -27,7 +27,7 @@ public class Fragment_Tools extends ListFragment {
         super.onActivityCreated(savedinstancestate);
 
         setListAdapter(new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_list_item_1, tools));
+                R.layout.tool_list_item, tools));
 
 
     }
