@@ -1,5 +1,8 @@
 package asmagill.routeright;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.AppCompatActivity;
@@ -34,8 +37,15 @@ public class MainActivity extends AppCompatActivity {
         AdapterHolder.adapter = new PortObjectsAdapter(this,
                 R.layout.service_list_item);
 
-        NetworkingStuuf m= new NetworkingStuuf(AdapterHolder.adapter);
-        m.execute();
+
+        if(Application_Information.isNetworkAvailable(this)) {
+            NetworkingStuuf m = new NetworkingStuuf(AdapterHolder.adapter);
+            m.execute();
+        } else {
+            AdapterHolder.adapter.clear();
+            AdapterHolder.adapter.add(new PortObjects("Not Connected To A Network"));
+        }
+        Application_Information.enableActions = false;
 
         mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
@@ -79,5 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 
 }

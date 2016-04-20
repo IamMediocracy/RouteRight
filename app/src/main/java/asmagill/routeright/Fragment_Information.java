@@ -45,26 +45,60 @@ public class Fragment_Information extends Fragment{
         // Use these values to set values for display
         // values are currently set to defaults for display purpose
 
-        CurrentNetworkInformation info = new CurrentNetworkInformation(getContext());
+        String ssid_val;
+        String status_val;
+        String type_val;
+        String network_val;
+        String ipAdd_val;
+        String publicIp_val;
+        String gateway_val;
+        String subnet_val;
+        String macAdd_val;
+        String dns_val;
+        String dhcp_val;
+        String frequency_val;
+        String linkspeed_val;
+        String lease_length;
 
-        //More values to add, add more fields.
-        String ssid_val = info.getSSID();
-        String status_val = info.isConnected() ? "Connected" : "Not Connected";
-        String type_val = "Wifi";
-        String network_val = info.getNetworkAddress();
-        String ipAdd_val = info.getIpAddress();
-        String publicIp_val = info.getPublicIP();
-        String gateway_val = info.getGateway();
-        String subnet_val = info.getNetmask();
-        String macAdd_val = info.getMacAddress();
-        String dns_val = info.getDnsOne();
-        String dhcp_val = info.getServerAddress();
+        if(Application_Information.isNetworkAvailable(getContext())) {
+
+            CurrentNetworkInformation info = new CurrentNetworkInformation(getContext());
+            //More values to add, add more fields.
+            ssid_val = info.getSSID();
+            status_val = info.isConnected() ? "Connected" : "Not Connected";
+            type_val = "Wifi";
+            network_val = info.getNetworkAddress();
+            ipAdd_val = info.getIpAddress();
+            publicIp_val = info.getPublicIP();
+            gateway_val = info.getGateway();
+            subnet_val = info.getNetmask();
+            macAdd_val = info.getMacAddress();
+            dns_val = info.getDnsOne();
+            dhcp_val = info.getServerAddress();
 
 
-        //Added Strings
-        String frequency_val = info.getFrequency();
-        String linkspeed_val = info.getLinkSpeed();
-        String lease_length = info.getLeaseLength();
+            //Added Strings
+            frequency_val = info.getFrequency();
+            linkspeed_val = info.getLinkSpeed();
+            lease_length = info.getLeaseLength();
+
+        } else {
+            ssid_val = "...";
+            status_val = "Not Connected";
+            type_val = "...";
+            network_val = "...";
+            ipAdd_val = "...";
+            publicIp_val = "...";
+            gateway_val = "...";
+            subnet_val = "...";
+            macAdd_val = "...";
+            dns_val = "...";
+            dhcp_val = "...";
+
+            frequency_val = "...";
+            linkspeed_val = "...";
+            lease_length = "...";
+        }
 
         //Adds network objects to ListView
         entries.add(new NetworkObject("Status: ", status_val));

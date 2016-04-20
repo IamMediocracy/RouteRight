@@ -2,6 +2,7 @@ package asmagill.routeright;
 
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
+import android.view.View;
 import android.widget.ArrayAdapter;
 
 import org.apache.http.HttpEntity;
@@ -110,6 +111,7 @@ public class DatabaseSearch extends AsyncTask<Void, Void, ArrayList<String>> {
         adapter.clear();
         adapter.addAll(str);
         adapter.notifyDataSetChanged();
+        Application_Information.bar.setVisibility(View.INVISIBLE);
     }
 
 }

@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 /**
  * Created by William on 4/11/2016.
@@ -52,7 +53,8 @@ public class PortWizardFragment extends Fragment {
                 EditText edt = (EditText) getView().findViewById(R.id.searchbox);
 
                 runSearch(edt.getText().toString());
-
+                Application_Information.bar = (ProgressBar) getActivity().findViewById(R.id.progress_bar);
+                Application_Information.bar.setVisibility(View.VISIBLE);
 
 
 
@@ -96,27 +98,25 @@ public class PortWizardFragment extends Fragment {
 
     public void add_ports(String process_name, String ip){
 
-       String ref = Application_Information.curr_appname;
-        AddPorts add = new AddPorts(Application_Information.curr_appname, process_name, ip);
-        add.execute();
+        if(check(process_name, ip)) {
+            AddPorts add = new AddPorts(Application_Information.curr_appname, process_name, ip);
+            add.execute();
 
-        Application_Information.curr_appname = null;
-        Application_Information.curr_ip = "";
-        Application_Information.curr_search_selected = "";
+            Application_Information.curr_appname = null;
+            Application_Information.curr_ip = "";
+            Application_Information.curr_search_selected = "";
 
-        AdapterHolder.adapter.clear();
-        AdapterHolder.adapter.add(new PortObjects("Please Wait..."));
+            AdapterHolder.adapter.clear();
+            AdapterHolder.adapter.add(new PortObjects("Please Wait..."));
 
-        getActivity().finish();
+            Application_Information.enableActions = false;
+            Fragment_PortMap.updateUI(false);
+
+            getActivity().finish();
+
+        }
 
     }
-
-    public void add_ports(){
-
-
-    }
-
-
 
     public void updateUI(){
         EditText edtProcessName = (EditText) getActivity().findViewById(R.id.custom_service_name);
@@ -152,5 +152,52 @@ public class PortWizardFragment extends Fragment {
             Application_Information.curr_appname = edtProcessName.getText().toString();
         }
 
+    }
+
+    private boolean check(String ProcessName, String ip){
+
+        try{
+            if(Application_Information.curr_appname == null || Application_Information.curr_appname.isEmpty()){
+                ToastFactory.showToast(getActivity(), "No Application Selected");
+                throw new Error();
+            }
+
+            if(ProcessName.trim().equals("")){
+                ToastFactory.showToast(getActivity(), "Service Name is Empty");
+                throw new Error();
+            }
+
+
+
+                String[] tokens = ip.split("\\.");
+
+                if(tokens.length != 4){
+                    ToastFactory.showToast(getActivity(), "Malformed IP Address");
+                    throw new Error();
+
+                }
+
+                for(String token: tokens) {
+                    int m;
+
+                    m = Integer.parseInt(token);
+
+
+                    if(m > 255 || m < 0){
+                        ToastFactory.showToast(getActivity(), "IP Decimal Integer Out Of Range");
+                        throw new Error();
+                    }
+        }
+
+
+
+        } catch (NumberFormatException e){
+            ToastFactory.showToast(getActivity(), "Malformed IP Address");
+            return false;
+        } catch (Error e){
+            return false;
+        }
+
+        return true;
     }
 }

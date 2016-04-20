@@ -17,6 +17,7 @@ public class NetworkingStuuf extends AsyncTask<Void, Void, ArrayList<PortObjects
 
     public PortObjectsAdapter adapter;
 
+    boolean pass = true;
 
     public NetworkingStuuf (PortObjectsAdapter adapter){
         this.adapter = adapter;
@@ -139,19 +140,28 @@ public class NetworkingStuuf extends AsyncTask<Void, Void, ArrayList<PortObjects
                 System.out.println("\nDone.");
             } else {
                 str.add(new PortObjects("Could not find router with UPNP Enabled."));
+                pass = false;
+
                 System.out.println("Unable to find IGD on your network");
             }
         } catch (IOException var11) {
+            pass = false;
+
         } catch (UPNPResponseException var12) {
             System.err.println("UPNP device unhappy " + var12.getDetailErrorCode() + " " + var12.getDetailErrorDescription());
             str.add(new PortObjects("Response Error."));
+            pass = false;
 
         }
+
         return str;
     }
 
     @Override
     protected void onPostExecute(ArrayList<PortObjects> str){
+        Application_Information.enableActions = pass;
+        Fragment_PortMap.updateUI(pass);
+
         adapter.clear();
         adapter.addAll(str);
         adapter.notifyDataSetChanged();

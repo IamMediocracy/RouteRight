@@ -129,31 +129,74 @@ public class PortManualFragment extends Fragment {
         EditText tcp_edt = (EditText) getActivity().findViewById(R.id.tcp_port_edt);
         EditText udp_edt = (EditText) getActivity().findViewById(R.id.udp_port_edt);
 
-       String ref = Application_Information.curr_appname;
+        if(check(edtProcessName.getText().toString(), ip.getText().toString())) {
 
-        ArrayList<String> tcp = new ArrayList<>();
-        ArrayList<String> udp = new ArrayList<>();
+            String ref = Application_Information.curr_appname;
 
-        for(int i = 0; i < AdapterHolder.tcp_ports.getCount(); i++){
-            tcp.add(AdapterHolder.tcp_ports.getItem(i));
+            ArrayList<String> tcp = new ArrayList<>();
+            ArrayList<String> udp = new ArrayList<>();
+
+            for (int i = 0; i < AdapterHolder.tcp_ports.getCount(); i++) {
+                tcp.add(AdapterHolder.tcp_ports.getItem(i));
+            }
+
+            for (int i = 0; i < AdapterHolder.udp_ports.getCount(); i++) {
+                tcp.add(AdapterHolder.udp_ports.getItem(i));
+            }
+
+            AddPorts add = new AddPorts(edtProcessName.getText().toString(), edtProcessName.getText().toString(), ip.getText().toString(), tcp, udp);
+            add.execute();
+
+
+            AdapterHolder.udp_ports.clear();
+            AdapterHolder.tcp_ports.clear();
+            AdapterHolder.adapter.add(new PortObjects("Please Wait..."));
+
+            getActivity().finish();
+        }
+    }
+
+    private boolean check(String proc_name, String ip) {
+
+        try{
+            if(proc_name.trim().equals("")){
+                ToastFactory.showToast(getActivity(),"Service Name Empty");
+                throw new Error();
+            }
+
+
+            String[] tokens = ip.split("\\.");
+
+            if(tokens.length != 4){
+                ToastFactory.showToast(getActivity(), "Malformed IP Address");
+                throw new Error();
+
+            }
+
+            for(String token: tokens) {
+                int m;
+                m = Integer.parseInt(token.trim());
+
+                if(m > 255 || m < 0){
+                    ToastFactory.showToast(getActivity(), "IP Decimal Integer Out Of Range");
+                    throw new Error();
+                }
+            }
+
+            if(AdapterHolder.tcp_ports.getCount() == 0 && AdapterHolder.udp_ports.getCount() == 0){
+                ToastFactory.showToast(getActivity(), "No Ports were Specified");
+                throw new Error();
+            }
+
+
+        } catch (NumberFormatException e){
+            ToastFactory.showToast(getActivity(), "Malformed IP Address");
+            return false;
+        } catch (Error e){
+            return false;
         }
 
-        for(int i = 0; i < AdapterHolder.udp_ports.getCount(); i++){
-            tcp.add(AdapterHolder.udp_ports.getItem(i));
-        }
-
-        AddPorts add = new AddPorts(edtProcessName.getText().toString(), edtProcessName.getText().toString(), ip.getText().toString(), tcp, udp);
-        add.execute();
-
-
-
-
-        AdapterHolder.udp_ports.clear();
-        AdapterHolder.tcp_ports.clear();
-        AdapterHolder.adapter.add(new PortObjects("Please Wait..."));
-
-        getActivity().finish();
-
+        return true;
     }
 
     @Override

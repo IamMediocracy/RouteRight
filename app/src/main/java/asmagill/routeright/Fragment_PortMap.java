@@ -4,6 +4,8 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.ListFragment;
@@ -30,13 +32,20 @@ import org.fourthline.cling.registry.Registry;
 public class Fragment_PortMap extends ListFragment{
 
 
-
+    static Button add;
+    static Button edit;
+    static Button delete;
 
 
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        add = (Button) getView().findViewById(R.id.portmap_add);
+        edit = (Button) getView().findViewById(R.id.portmap_edit);
+        delete = (Button) getView().findViewById(R.id.portmap_delete);
+
 
         org.seamless.util.logging.LoggingUtil.resetRootHandler(new FixedAndroidLogHandler());
 
@@ -46,7 +55,7 @@ public class Fragment_PortMap extends ListFragment{
 
         setListAdapter(AdapterHolder.adapter);
 
-        Button add = (Button) getView().findViewById(R.id.portmap_add);
+
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +65,11 @@ public class Fragment_PortMap extends ListFragment{
             }
         });
 
+
+
+        updateUI(Application_Information.enableActions);
+
+
     }
 
 
@@ -64,6 +78,30 @@ public class Fragment_PortMap extends ListFragment{
         return inflater.inflate(R.layout.portmapping_main, container, false);
     }
 
+    public static void updateUI(Boolean enable){
+        if(add == null){
 
+        } else {
+
+            if(enable){
+                add.setEnabled(true);
+                delete.setEnabled(true);
+                edit.setEnabled(true);
+            } else {
+                add.setEnabled(false);
+                delete.setEnabled(false);
+                edit.setEnabled(false);
+            }
+
+        }
+    }
+
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
 
 }
