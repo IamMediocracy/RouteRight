@@ -11,7 +11,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="asmagill.routeright.MainPage"
     tools:showIn="@layout/activity_main_page"
-    android:background="#4169E1">
+    android:background="#1b9bff">
 
     <EditText
         android:layout_width="fill_parent"

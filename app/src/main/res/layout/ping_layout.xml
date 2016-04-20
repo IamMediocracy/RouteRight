@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/transparent"
 
-    android:background="@android:color/transparent">
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,133 +14,81 @@
         android:background="#383838">
 
         <TextView
+            android:id="@+id/basicInfoTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/ping"
-            android:id="@+id/basicInfoTitle"
-            android:gravity="center"
-            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
+            android:text="@string/ping"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#ffffff"
             android:textSize="30dp"
-            android:textStyle="bold|italic"
-            android:textColor="#ffffff" />
+            android:textStyle="bold|italic" />
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/ip_address"
-            android:id="@+id/textView"
-            android:layout_below="@+id/basicInfoTitle"
             android:layout_alignParentStart="true"
-            android:textColor="@color/white"
+            android:layout_below="@+id/basicInfoTitle"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="28dp" />
+            android:layout_marginTop="28dp"
+            android:text="@string/ip_address"
+            android:textColor="@color/white" />
 
         <EditText
+            android:id="@+id/ping_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"
-            android:id="@+id/ping_address"
-            android:layout_below="@+id/textView"
             android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:background="@color/white" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/ping_time"
-            android:layout_centerVertical="true"
-            android:background="@color/white"
-            android:textSize="20sp"
-            android:layout_alignEnd="@+id/ping_calculate"
-            android:layout_alignStart="@+id/ping_calculate" />
-
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Calculate"
-            android:id="@+id/ping_calculate"
-            android:layout_below="@+id/ping_address"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="26dp"
-            android:onClick="pinger"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ping_success"
-            android:layout_below="@+id/ping_time"
-            android:layout_marginTop="24dp"
-            android:background="@color/white"
-            android:textSize="20sp"
-            android:layout_alignStart="@+id/ping_time"
-            android:layout_alignEnd="@+id/ping_time" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ping_failed"
-            android:layout_below="@+id/ping_success"
-            android:layout_marginTop="24dp"
-            android:textSize="20sp"
-            android:background="@color/white"
-            android:layout_alignStart="@+id/ping_success"
-            android:layout_alignEnd="@+id/ping_success" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Time:"
-            android:id="@+id/textView5"
-            android:layout_alignParentStart="true"
-            android:layout_toStartOf="@+id/ping_time"
-            android:layout_alignTop="@+id/ping_time"
-            android:layout_above="@+id/ping_success"
-            android:textColor="@color/white"
-            android:textAlignment="textStart"
-            android:password="false"
-            android:textSize="20sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Success: "
-            android:id="@+id/textView6"
-            android:textColor="@color/white"
-            android:textAlignment="textStart"
-            android:password="false"
-            android:textSize="20sp"
-            android:layout_alignParentStart="true"
-            android:layout_toStartOf="@+id/ping_success"
-            android:layout_above="@+id/ping_failed"
-            android:layout_alignTop="@+id/ping_success" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Failed:"
-            android:id="@+id/textView7"
-            android:textColor="@color/white"
-            android:textAlignment="textStart"
-            android:password="false"
-            android:textSize="20sp"
-            android:layout_alignTop="@+id/ping_failed"
-            android:layout_alignBottom="@+id/ping_failed"
-            android:layout_alignParentStart="true"
-            android:layout_toStartOf="@+id/ping_failed" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Back"
             android:id="@+id/ping_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ping_address"
             android:layout_marginTop="24dp"
-            android:layout_below="@+id/ping_failed"
-            android:layout_alignParentStart="true"
-            android:layout_toStartOf="@+id/ping_failed"
-            android:background="@drawable/back_arrow" />
+            android:layout_alignLeft="@+id/ping_address"
+            android:background="@drawable/back_arrow"
+            android:text="Back" />
+
+        <Button
+            android:id="@+id/ping_calculate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ping_address"
+            android:layout_alignRight="@id/ping_address"
+            android:layout_marginTop="26dp"
+            android:background="@drawable/blank_button"
+            android:onClick="pinger"
+            android:text="Ping" />
+
+        <ScrollView
+            android:id="@+id/ping_scroll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ping_calculate"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="26dp">
+
+            <TextView
+                android:id="@+id/ping_results"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:textStyle="bold|italic" />
+
+        </ScrollView>
 
     </RelativeLayout>
 </LinearLayout>
