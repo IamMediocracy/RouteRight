@@ -1,8 +1,5 @@
 package asmagill.routeright;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.widget.ArrayAdapter;
 
 /**
@@ -22,7 +19,7 @@ public class AdapterHolder {
 
 
     public static void Update_adapter(){
-        NetworkingStuuf m= new NetworkingStuuf(AdapterHolder.adapter);
+        NetworkInformation m= new NetworkInformation(AdapterHolder.adapter);
         m.execute();
     }
 

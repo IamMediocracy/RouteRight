@@ -13,13 +13,13 @@ import java.util.ArrayList;
 /**
  * Created by William on 4/6/2016.
  */
-public class NetworkingStuuf extends AsyncTask<Void, Void, ArrayList<PortObjects>>{
+public class NetworkInformation extends AsyncTask<Void, Void, ArrayList<PortObjects>>{
 
     public PortObjectsAdapter adapter;
 
     boolean pass = true;
 
-    public NetworkingStuuf (PortObjectsAdapter adapter){
+    public NetworkInformation(PortObjectsAdapter adapter){
         this.adapter = adapter;
     }
 
@@ -115,25 +115,6 @@ public class NetworkingStuuf extends AsyncTask<Void, Void, ArrayList<PortObjects
 
                         }
 
-                    }
-
-                    short var13 = 9090;
-                    System.out.println("\nTrying to map dummy port " + var13 + "...");
-                    String var14 = InetAddress.getLocalHost().getHostAddress();
-                    boolean mapped = testIGD.addPortMapping("Some mapping description", (String) null, var13, var13, var14, 0, "TCP");
-                    if (mapped) {
-                        System.out.println("Port " + var13 + " mapped to " + var14);
-                        System.out.println("Current mappings count is " + testIGD.getNatMappingsCount());
-                        ActionResponse resp = testIGD.getSpecificPortMappingEntry((String) null, var13, "TCP");
-                        if (resp != null) {
-                            System.out.println("Port " + var13 + " mapping confirmation received from device");
-                        }
-
-                        System.out.println("Delete dummy port mapping...");
-                        boolean unmapped = testIGD.deletePortMapping((String) null, var13, "TCP");
-                        if (unmapped) {
-                            System.out.println("Port " + var13 + " unmapped");
-                        }
                     }
                 }
 

@@ -1,8 +1,5 @@
 package asmagill.routeright;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.AppCompatActivity;
@@ -39,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         if(Application_Information.isNetworkAvailable(this)) {
-            NetworkingStuuf m = new NetworkingStuuf(AdapterHolder.adapter);
+            NetworkInformation m = new NetworkInformation(AdapterHolder.adapter);
             m.execute();
         } else {
             AdapterHolder.adapter.clear();
