@@ -1,0 +1,27 @@
+#vid
+{
+    float: left;
+    position: relative;
+    border: 2px ridge #000000;
+    margin: 0 1.5em 0 0;
+}
+
+#video-container
+{
+    height: 320px;
+}
+
+#vid-explain-header
+{
+    padding: 0 0 .5em 0;
+}
+
+
+.line-separator
+{
+    height:1px;
+    background:#717171;
+    border-bottom:1px groove #313030;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}

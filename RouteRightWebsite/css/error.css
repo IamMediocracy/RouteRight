@@ -1,0 +1,12 @@
+#error-header
+{
+    font-size: 8em;
+    color: #B0171F;
+}
+
+#error-body
+{
+    font-size: 1em;
+    font-style: italic;
+    padding-bottom: 5em;   
+}
